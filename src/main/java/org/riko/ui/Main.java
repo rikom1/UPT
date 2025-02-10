@@ -1,10 +1,5 @@
-package org.riko;
+package org.riko.ui;
 
-import com.formdev.flatlaf.FlatDarkLaf;
-import org.riko.ui.MainUI;
-
-import javax.swing.*;
-import java.awt.*;
 import java.io.IOException;
 
 public class Main {
