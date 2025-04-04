@@ -17,13 +17,13 @@ public class MainUI {
     public static void primaryGui() throws IOException {
         FlatMacDarkLaf.setup();
 
-        File backgroundImage = new File(DropPanel.class.getResource("/draggg.png").getFile());
-        if(!backgroundImage.exists()){
+        File taustaPilt = new File(DropPanel.class.getResource("/draggg.png").getFile());
+        if(!taustaPilt.exists()){
             throw new RuntimeException("Faili ei leitud");
         }
 
         try {
-            DropPanel.pilt = ImageIO.read(backgroundImage);
+            DropPanel.pilt = ImageIO.read(taustaPilt);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -31,8 +31,8 @@ public class MainUI {
 
         raam = new JFrame("Programm");
         Container c = raam.getContentPane();
-        GroupLayout layout = new GroupLayout(c);
-        c.setLayout(layout);
+        GroupLayout paigutus = new GroupLayout(c);
+        c.setLayout(paigutus);
         raam.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         raam.setSize(600, 620);
         raam.setLayout(new BorderLayout());
@@ -53,7 +53,7 @@ public class MainUI {
         mainPanel.setBorder(new EmptyBorder(50, 0,0 ,0 ));
         raam.add(mainPanel, BorderLayout.CENTER);
 
-        JPanel dropPanel = new DropPanel() {
+        JPanel lohistusPaneel = new DropPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -67,8 +67,8 @@ public class MainUI {
             }
         };
 
-        dropPanel.setPreferredSize(new Dimension(426, 426));
-        mainPanel.add(dropPanel);
+        lohistusPaneel.setPreferredSize(new Dimension(426, 426));
+        mainPanel.add(lohistusPaneel);
 
         raam.getContentPane().add(mainPanel, BorderLayout.CENTER);
         raam.setVisible(true);

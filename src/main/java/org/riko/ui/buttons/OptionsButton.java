@@ -1,7 +1,5 @@
 package org.riko.ui.buttons;
 
-import li.flor.nativejfilechooser.NativeJFileChooser;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -13,9 +11,9 @@ import java.io.File;
 public class OptionsButton extends JButton {
 
     public static JFrame optionsFrame = new JFrame("Sätted");
-    public static JLabel saveLocationLabel = new JLabel("Save location: ");
+    public static JLabel salvestiAsukoht = new JLabel("Save location: ");
     public static Image folderImage;
-    public static File folder;
+    public static File kaust;
 
     public static void optionsFrame() {
         optionsFrame.setSize(400, 400);
@@ -27,23 +25,22 @@ public class OptionsButton extends JButton {
             }
         });
 
-        ImageIcon folderImg = new ImageIcon(OptionsButton.class.getResource("/folder.png"));
-        JButton folderButton = new JButton();
-        folderButton.setPreferredSize(new Dimension(125, 30));
-        folderButton.setIcon(folderImg);
-        folderButton.setText("Select folder");
+        ImageIcon kaustaPilt = new ImageIcon(OptionsButton.class.getResource("/folder.png"));
+        JButton kaustaNupp = new JButton();
+        kaustaNupp.setPreferredSize(new Dimension(125, 30));
+        kaustaNupp.setIcon(kaustaPilt);
+        kaustaNupp.setText("Select folder");
 
-        folderButton.addActionListener(new ActionListener() {
+        kaustaNupp.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    System.out.println("hi");
-                    JFileChooser fileChooser = new JFileChooser();
-                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                    fileChooser.showDialog(optionsFrame, "Save");
-                    folder = fileChooser.getSelectedFile();
-                    saveLocationLabel.setText(fileChooser.getSelectedFile().toString());
-                    System.out.println(folder);
+                    JFileChooser failiValik = new JFileChooser();
+                    failiValik.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    failiValik.showDialog(optionsFrame, "Salvesta");
+                    kaust = failiValik.getSelectedFile();
+                    salvestiAsukoht.setText(failiValik.getSelectedFile().toString());
+                    System.out.println(kaust);
                 } catch (Exception exception) {
                     exception.printStackTrace();
                 }
@@ -52,15 +49,15 @@ public class OptionsButton extends JButton {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        saveLocationLabel.setBorder(BorderFactory.createEmptyBorder(60, 10, 10, 10));
-        panel.add(saveLocationLabel);
+        salvestiAsukoht.setBorder(BorderFactory.createEmptyBorder(60, 10, 10, 10));
+        panel.add(salvestiAsukoht);
 
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        buttonPanel.add(folderButton);
+        JPanel nupuPaneel = new JPanel();
+        nupuPaneel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        nupuPaneel.add(kaustaNupp);
 
         optionsFrame.add(panel, BorderLayout.CENTER);
-        optionsFrame.add(buttonPanel, BorderLayout.SOUTH);
+        optionsFrame.add(nupuPaneel, BorderLayout.SOUTH);
 
         //TODO: Add save button to the panel, add option: "Delete old file after processing?"
     }

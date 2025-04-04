@@ -10,17 +10,22 @@ public class ChangeFormat {
     public static void changeFormat(File file, String format, String saveLocation) {
         try {
             BufferedImage image = ImageIO.read(file);
+
+            if(format.equals("jpg") || format.equals("gif")) {
+                BufferedImage convertedImage = new BufferedImage(
+                        image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
+                convertedImage.getGraphics().drawImage(image, 0, 0, null);
+
+                image = convertedImage;
+            }
+
             System.out.println(saveLocation + "  hi :DDDDDDDDD");
 
             try{
                 File newFile = new File(saveLocation, file.getName().replaceFirst("[.][^.]+$", "") + "." + format.toLowerCase());
-                ImageIO.write(image, format, newFile);
-                if(newFile.createNewFile()){
-                    System.out.println("File created: " + newFile.getName());
-                    System.out.println("File saved to: " + newFile.getAbsolutePath());
-                } else {
-                    System.out.println("File already exists.");
-                }
+
+                boolean success = ImageIO.write(image, format, newFile);
+                System.out.println("Success: " + success);
             } catch (IOException e){
                 System.out.println("Error: " + e);
                 e.printStackTrace();

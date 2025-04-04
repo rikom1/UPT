@@ -12,65 +12,63 @@ public class SelectFormatUI {
 
     public static String format;
 
-    public static String returnFormat() {
-        System.out.println("HELLO BITCH");
-
+    public static String formaat() {
         FlatMacDarkLaf.setup();
 
-        JDialog dialog = new JDialog((Frame) null, "Select format", true);
+        JDialog dialog = new JDialog((Frame) null, "Vali formaat", true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         dialog.setSize(600, 200);
         WindowUtils.centerWindow(dialog);
 
-        JLabel label = new JLabel("Format:");
-        String[] formats = {"JPG", "JPEG", "PNG", "GIF"};
-        JComboBox<String> formatList = new JComboBox<>(formats);
-        JButton submitButton = new JButton("Submit");
+        JLabel silt = new JLabel("Format:");
+        String[] formaadid = {"JPG", "JPEG", "PNG", "GIF"};
+        JComboBox<String> formaadiNimekiri = new JComboBox<>(formaadid);
+        JButton sisestaNupp = new JButton("Submit");
 
-        JPanel mainPanel = new JPanel();
-        GroupLayout layout = new GroupLayout(mainPanel);
-        mainPanel.setLayout(layout);
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        JPanel peaPaneel = new JPanel();
+        GroupLayout paigutus = new GroupLayout(peaPaneel);
+        peaPaneel.setLayout(paigutus);
+        paigutus.setAutoCreateGaps(true);
+        paigutus.setAutoCreateContainerGaps(true);
 
-        layout.setHorizontalGroup(
-                layout.createSequentialGroup()
+        paigutus.setHorizontalGroup(
+                paigutus.createSequentialGroup()
                         .addContainerGap(20, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                .addComponent(label)
-                                .addComponent(formatList)
-                                .addComponent(submitButton))
+                        .addGroup(paigutus.createParallelGroup(GroupLayout.Alignment.LEADING)
+                                .addComponent(silt)
+                                .addComponent(formaadiNimekiri)
+                                .addComponent(sisestaNupp))
                         .addContainerGap(20, Short.MAX_VALUE)
         );
 
-        layout.setVerticalGroup(
-                layout.createSequentialGroup()
+        paigutus.setVerticalGroup(
+                paigutus.createSequentialGroup()
                         .addContainerGap(20, Short.MAX_VALUE)
-                        .addComponent(label)
+                        .addComponent(silt)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(formatList)
+                        .addComponent(formaadiNimekiri)
                         .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(submitButton)
+                        .addComponent(sisestaNupp)
                         .addContainerGap(20, Short.MAX_VALUE)
         );
 
-        dialog.add(mainPanel);
+        dialog.add(peaPaneel);
 
-        final String[] selectedFormat = new String[1];
+        final String[] valitudFormaat = new String[1];
 
-        submitButton.addActionListener(e -> {
-            selectedFormat[0] = (String) formatList.getSelectedItem();
+        sisestaNupp.addActionListener(e -> {
+            valitudFormaat[0] = (String) formaadiNimekiri.getSelectedItem();
             dialog.dispose();
         });
 
         dialog.setVisible(true);
 
-        return selectedFormat[0];
+        return valitudFormaat[0];
     }
 
-    public static void promptForFormat() {
-        format = returnFormat();
-        System.out.println("Selected format: " + format);
+    public static void valitudFormaat() {
+        format = formaat();
+        System.out.println("Valitud formaat: " + format);
     }
 
     public static void main() throws IOException {

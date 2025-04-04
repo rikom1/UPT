@@ -22,14 +22,14 @@ public class DropPanel extends JPanel implements DropTargetListener {
     public static File file;
 
     public DropPanel() {
-        this.setBorder(BorderFactory.createBevelBorder( BevelBorder.LOWERED, new Color(30,60,10, 0).brighter(), new Color(114, 21, 13, 0).darker() ) );
+        this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, new Color(30, 60, 10, 0).brighter(), new Color(114, 21, 13, 0).darker()));
         DropTarget dt = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
         this.setDropTarget(dt);
     }
 
     @Override
     public void dragEnter(DropTargetDragEvent dtde) {
-        this.setBorder( BorderFactory.createBevelBorder( BevelBorder.RAISED, Color.GRAY.brighter(), Color.GRAY.brighter()));
+        this.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED, Color.GRAY.brighter(), Color.GRAY.brighter()));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DropPanel extends JPanel implements DropTargetListener {
 
     @Override
     public void dragExit(DropTargetEvent dte) {
-        this.setBorder(BorderFactory.createBevelBorder( BevelBorder.LOWERED, new Color(30,60,10, 0).brighter(), new Color(114, 21, 13, 0).darker() ) );
+        this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, new Color(30, 60, 10, 0).brighter(), new Color(114, 21, 13, 0).darker()));
     }
 
     @Override
@@ -52,6 +52,7 @@ public class DropPanel extends JPanel implements DropTargetListener {
         try {
             dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
             Transferable tr = dtde.getTransferable();
+            this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, new Color(30, 60, 10, 0).brighter(), new Color(114, 21, 13, 0).darker()));
 
             if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
                 List<File> fileList = (List<File>) tr.getTransferData(DataFlavor.javaFileListFlavor);
@@ -60,19 +61,18 @@ public class DropPanel extends JPanel implements DropTargetListener {
                     System.out.println("File dropped: " + fileList.get(0).getAbsolutePath());
                     file = fileList.get(0);
 
-                    if (SelectFormatUI.format == null) {
-                        SelectFormatUI.promptForFormat();
-                    }
+                    SelectFormatUI.format = null; // Reset format before prompting
+                    SelectFormatUI.valitudFormaat();
 
                     if (SelectFormatUI.format != null) {
                         if (SelectFormatUI.format.equals("JPG")) {
-                            ChangeFormat.changeFormat(file, "jpg", OptionsButton.folder.getAbsolutePath());
+                            ChangeFormat.changeFormat(file, "jpg", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("JPEG")) {
-                            ChangeFormat.changeFormat(file, "jpeg", OptionsButton.folder.getAbsolutePath());
+                            ChangeFormat.changeFormat(file, "jpeg", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("PNG")) {
-                            ChangeFormat.changeFormat(file, "png", OptionsButton.folder.getAbsolutePath());
+                            ChangeFormat.changeFormat(file, "png", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("GIF")) {
-                            ChangeFormat.changeFormat(file, "gif", OptionsButton.folder.getAbsolutePath());
+                            ChangeFormat.changeFormat(file, "gif", OptionsButton.kaust.getAbsolutePath());
                         }
                     } else {
                         System.out.println("Format not selected or is null");
@@ -85,14 +85,11 @@ public class DropPanel extends JPanel implements DropTargetListener {
             }
 
             dtde.dropComplete(true);
-
-
-
         } catch (UnsupportedFlavorException | IOException e) {
             e.printStackTrace();
             dtde.dropComplete(false);
         }
 
-        this.setDropTarget(null);
+        this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null));
     }
 }
