@@ -1,0 +1,12 @@
+Enne kompileerimist veendu, et sul on arvutis installitud Java 17 või uuem versioon. Kui sul pole Java-d installitud, saad selle alla laadida aadressilt: https://www.oracle.com/java/technologies/javase-jdk17-downloads.html või https://www.azul.com/downloads/#downloads-table-zulu . Veendu, et valisid õige versiooni vastavalt oma operatsioonisüsteemile (Windows, Mac või Linux).
+
+Programmi on võimalik kompileerida nii:
+
+1. Lae Githubist alla kood ZIP-failina
+2. Ava ZIP fail ja lohista seal sees olev kaust sealt välja, näiteks töölauale.
+3. Ava kaust ja kopeeri selle tee (nt C:\Users\riko\Desktop\UPT-master)
+4. Ava käsujada ehk Command Prompt ja jooksuta see administraatorina. (parem klõps ja Jooksuta administraatorina) Seejärel mine kausta (üleval toodud näitega nii: cd C:\Users\riko\Desktop\UPT-master)
+5. Kompileeri programm käsuga: .\gradlew shadowJar
+6. Oota kuni kompileerimine lõpeb, seejärel tekib valminud JAR fail kausta UPT-master\buildl\libs\
+7. Ava käsujada ja jooksuta fail käsuga: java -jar build\libs\UPT-1.0-SNAPSHOT-all.jar
+8. Oota kuni programm avaneb, seejärel saad seda kasutada.
