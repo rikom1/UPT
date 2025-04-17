@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 public class MainUI {
     private static JFrame raam;
@@ -17,17 +18,13 @@ public class MainUI {
     public static void primaryGui() throws IOException {
         FlatMacDarkLaf.setup();
 
-        File taustaPilt = new File(DropPanel.class.getResource("/draggg.png").getFile());
-        if(!taustaPilt.exists()){
-            throw new RuntimeException("Faili ei leitud");
-        }
+        URL tausttapilt = Thread.currentThread().getContextClassLoader().getResource("draggg.png");
 
         try {
-            DropPanel.pilt = ImageIO.read(taustaPilt);
+            DropPanel.pilt = ImageIO.read(tausttapilt);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        //TODO: change from pc path to project path
 
         raam = new JFrame("Programm");
         Container c = raam.getContentPane();
@@ -45,8 +42,7 @@ public class MainUI {
         JButton suvandiNupp = new OptionsButton("Suvandid");
         suvandiNupp.setHorizontalAlignment(SwingConstants.LEFT);
 
-        //TODO: Change color of optionsgear.png to same color as frame (change icon logo on icons website)
-        suvandiNupp.setIcon(new ImageIcon(OptionsButton.class.getResource("/optionsgear.png")));
+        suvandiNupp.setIcon(new ImageIcon(Thread.currentThread().getContextClassLoader().getResource("optionsgear.png").getFile()));
         tooriistaPaneel.add(suvandiNupp);
 
         JPanel mainPanel = new JPanel();
@@ -74,11 +70,3 @@ public class MainUI {
         raam.setVisible(true);
     }
 }
-
-
-
-
-
-
-
-//FIX BUG, WHITE BORDER STAYS AFTER DRAGGING IMAGE AND SELECTING FORMAT

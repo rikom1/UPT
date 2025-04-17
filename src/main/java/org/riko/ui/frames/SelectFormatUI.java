@@ -20,7 +20,7 @@ public class SelectFormatUI {
         dialog.setSize(600, 200);
         WindowUtils.centerWindow(dialog);
 
-        JLabel silt = new JLabel("Format:");
+        JLabel silt = new JLabel("Formaat:");
         String[] formaadid = {"JPG", "JPEG", "PNG", "GIF"};
         JComboBox<String> formaadiNimekiri = new JComboBox<>(formaadid);
         JButton sisestaNupp = new JButton("Submit");

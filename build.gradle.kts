@@ -1,8 +1,9 @@
 plugins {
     id("java")
+    id("com.gradleup.shadow") version "9.0.0-beta12"
 }
 
-group = "org.example"
+group = "org.riko"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -15,6 +16,13 @@ dependencies {
     implementation("com.formdev:flatlaf:3.1")
     implementation("li.flor:native-j-file-chooser:1.6.4")
     implementation("org.openjfx:javafx:17")
+}
+
+tasks.jar {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    manifest {
+        attributes["Main-Class"] = "org.riko.ui.Main"
+    }
 }
 
 

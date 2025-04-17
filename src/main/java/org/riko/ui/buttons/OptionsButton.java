@@ -1,5 +1,6 @@
 package org.riko.ui.buttons;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,16 +8,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.net.URL;
 
 public class OptionsButton extends JButton {
 
-    public static JFrame optionsFrame = new JFrame("Sätted");
-    public static JLabel salvestiAsukoht = new JLabel("Save location: ");
-    public static Image folderImage;
+    public static JFrame optionsFrame = new JFrame("Seaded");
+    public static JLabel salvestiAsukoht = new JLabel("Salvestatud failid asuvad: ");
     public static File kaust;
 
     public static void optionsFrame() {
-        optionsFrame.setSize(400, 400);
+        optionsFrame.setSize(300, 200);
         optionsFrame.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent windowEvent) {
@@ -24,12 +25,20 @@ public class OptionsButton extends JButton {
                 optionsFrame.dispose();
             }
         });
+        ;
+        URL url = Thread.currentThread().getContextClassLoader().getResource("folder.png");
 
-        ImageIcon kaustaPilt = new ImageIcon(OptionsButton.class.getResource("/folder.png"));
         JButton kaustaNupp = new JButton();
         kaustaNupp.setPreferredSize(new Dimension(125, 30));
-        kaustaNupp.setIcon(kaustaPilt);
-        kaustaNupp.setText("Select folder");
+
+        try{
+            kaustaNupp.setIcon(new ImageIcon(ImageIO.read(url)));
+        } catch (Exception e){
+            System.out.println("Error: " + e);
+            e.printStackTrace();
+        }
+
+        kaustaNupp.setText("Vali kaust");
 
         kaustaNupp.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +58,7 @@ public class OptionsButton extends JButton {
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        salvestiAsukoht.setBorder(BorderFactory.createEmptyBorder(60, 10, 10, 10));
+        salvestiAsukoht.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         panel.add(salvestiAsukoht);
 
         JPanel nupuPaneel = new JPanel();
@@ -59,7 +68,6 @@ public class OptionsButton extends JButton {
         optionsFrame.add(panel, BorderLayout.CENTER);
         optionsFrame.add(nupuPaneel, BorderLayout.SOUTH);
 
-        //TODO: Add save button to the panel, add option: "Delete old file after processing?"
     }
 
     public OptionsButton(String options) {

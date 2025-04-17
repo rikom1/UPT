@@ -61,18 +61,18 @@ public class DropPanel extends JPanel implements DropTargetListener {
                     System.out.println("File dropped: " + fileList.get(0).getAbsolutePath());
                     file = fileList.get(0);
 
-                    SelectFormatUI.format = null; // Reset format before prompting
+                    SelectFormatUI.format = null;
                     SelectFormatUI.valitudFormaat();
 
                     if (SelectFormatUI.format != null) {
                         if (SelectFormatUI.format.equals("JPG")) {
-                            ChangeFormat.changeFormat(file, "jpg", OptionsButton.kaust.getAbsolutePath());
+                            ChangeFormat.muudaFormaat(file, "jpg", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("JPEG")) {
-                            ChangeFormat.changeFormat(file, "jpeg", OptionsButton.kaust.getAbsolutePath());
+                            ChangeFormat.muudaFormaat(file, "jpeg", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("PNG")) {
-                            ChangeFormat.changeFormat(file, "png", OptionsButton.kaust.getAbsolutePath());
+                            ChangeFormat.muudaFormaat(file, "png", OptionsButton.kaust.getAbsolutePath());
                         } else if (SelectFormatUI.format.equals("GIF")) {
-                            ChangeFormat.changeFormat(file, "gif", OptionsButton.kaust.getAbsolutePath());
+                            ChangeFormat.muudaFormaat(file, "gif", OptionsButton.kaust.getAbsolutePath());
                         }
                     } else {
                         System.out.println("Format not selected or is null");

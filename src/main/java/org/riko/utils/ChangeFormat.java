@@ -7,27 +7,26 @@ import java.io.IOException;
 
 public class ChangeFormat {
 
-    public static void changeFormat(File file, String format, String saveLocation) {
+    public static void muudaFormaat(File fail, String formaat, String salvestusAsukoht) {
         try {
-            BufferedImage image = ImageIO.read(file);
+            BufferedImage pilt = ImageIO.read(fail);
 
-            if(format.equals("jpg") || format.equals("gif")) {
-                BufferedImage convertedImage = new BufferedImage(
-                        image.getWidth(), image.getHeight(), BufferedImage.TYPE_INT_RGB);
-                convertedImage.getGraphics().drawImage(image, 0, 0, null);
+            if(formaat.equals("jpg") || formaat.equals("gif")) {
+                BufferedImage muundatudPilt = new BufferedImage(
+                        pilt.getWidth(), pilt.getHeight(), BufferedImage.TYPE_INT_RGB);
+                muundatudPilt.getGraphics().drawImage(pilt, 0, 0, null);
 
-                image = convertedImage;
+                pilt = muundatudPilt;
             }
 
-            System.out.println(saveLocation + "  hi :DDDDDDDDD");
-
             try{
-                File newFile = new File(saveLocation, file.getName().replaceFirst("[.][^.]+$", "") + "." + format.toLowerCase());
+                File uusFail = new File(salvestusAsukoht,
+                        fail.getName().replaceFirst("[.][^.]+$", "") + "." + formaat.toLowerCase());
 
-                boolean success = ImageIO.write(image, format, newFile);
-                System.out.println("Success: " + success);
+                boolean tulemus = ImageIO.write(pilt, formaat, uusFail);
+                System.out.println("Töötas: " + tulemus);
             } catch (IOException e){
-                System.out.println("Error: " + e);
+                System.out.println("Viga: " + e);
                 e.printStackTrace();
             }
         } catch (IOException e) {
