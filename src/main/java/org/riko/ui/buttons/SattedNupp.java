@@ -10,7 +10,7 @@ import java.awt.event.WindowEvent;
 import java.io.File;
 import java.net.URL;
 
-public class OptionsButton extends JButton {
+public class SattedNupp extends JButton {
 
     public static JFrame optionsFrame = new JFrame("Seaded");
     public static JLabel salvestiAsukoht = new JLabel("Salvestatud failid asuvad: ");
@@ -71,7 +71,7 @@ public class OptionsButton extends JButton {
 
     }
 
-    public OptionsButton(String options) {
+    public SattedNupp(String options) {
         this.setText(options);
         optionsFrame();
         this.addActionListener(new ActionListener() {

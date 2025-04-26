@@ -1,8 +1,8 @@
 package org.riko.ui;
 
-import org.riko.ui.buttons.OptionsButton;
-import org.riko.ui.frames.SelectFormatUI;
-import org.riko.utils.ChangeFormat;
+import org.riko.ui.buttons.SattedNupp;
+import org.riko.ui.frames.FormaadiValimiseUI;
+import org.riko.utils.VahetaFormaat;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -16,12 +16,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-public class DropPanel extends JPanel implements DropTargetListener {
+public class LohistusPaneel extends JPanel implements DropTargetListener {
 
     public static BufferedImage pilt;
     public static File file;
 
-    public DropPanel() {
+    public LohistusPaneel() {
         this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, new Color(30, 60, 10, 0).brighter(), new Color(114, 21, 13, 0).darker()));
         DropTarget dt = new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null);
         this.setDropTarget(dt);
@@ -61,18 +61,18 @@ public class DropPanel extends JPanel implements DropTargetListener {
                     System.out.println("File dropped: " + fileList.get(0).getAbsolutePath());
                     file = fileList.get(0); // Hangib esimese lohistatud faili
 
-                    SelectFormatUI.format = null;
-                    SelectFormatUI.valitudFormaat(); // avab formaadi valimise akna
+                    FormaadiValimiseUI.format = null;
+                    FormaadiValimiseUI.valitudFormaat(); // avab formaadi valimise akna
 
-                    if (SelectFormatUI.format != null) {
-                        if (SelectFormatUI.format.equals("JPG")) {
-                            ChangeFormat.muudaFormaat(file, "jpg", OptionsButton.kaust.getAbsolutePath());
-                        } else if (SelectFormatUI.format.equals("JPEG")) {
-                            ChangeFormat.muudaFormaat(file, "jpeg", OptionsButton.kaust.getAbsolutePath());
-                        } else if (SelectFormatUI.format.equals("PNG")) {
-                            ChangeFormat.muudaFormaat(file, "png", OptionsButton.kaust.getAbsolutePath());
-                        } else if (SelectFormatUI.format.equals("GIF")) {
-                            ChangeFormat.muudaFormaat(file, "gif", OptionsButton.kaust.getAbsolutePath());
+                    if (FormaadiValimiseUI.format != null) {
+                        if (FormaadiValimiseUI.format.equals("JPG")) {
+                            VahetaFormaat.muudaFormaat(file, "jpg", SattedNupp.kaust.getAbsolutePath());
+                        } else if (FormaadiValimiseUI.format.equals("JPEG")) {
+                            VahetaFormaat.muudaFormaat(file, "jpeg", SattedNupp.kaust.getAbsolutePath());
+                        } else if (FormaadiValimiseUI.format.equals("PNG")) {
+                            VahetaFormaat.muudaFormaat(file, "png", SattedNupp.kaust.getAbsolutePath());
+                        } else if (FormaadiValimiseUI.format.equals("GIF")) {
+                            VahetaFormaat.muudaFormaat(file, "gif", SattedNupp.kaust.getAbsolutePath());
                         }
                     } else {
                         System.out.println("Format not selected or is null");

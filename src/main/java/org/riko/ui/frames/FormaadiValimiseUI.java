@@ -1,14 +1,14 @@
 package org.riko.ui.frames;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import org.riko.ui.MainUI;
+import org.riko.ui.PeaUI;
 import org.riko.utils.WindowUtils;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
-public class SelectFormatUI {
+public class FormaadiValimiseUI {
 
     public static String format;
 
@@ -74,6 +74,6 @@ public class SelectFormatUI {
     }
 
     public static void main() throws IOException {
-        MainUI.primaryGui();
+        PeaUI.primaryGui();
     }
 }

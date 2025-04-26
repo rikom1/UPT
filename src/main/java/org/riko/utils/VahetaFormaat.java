@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class ChangeFormat {
+public class VahetaFormaat {
 
     public static void muudaFormaat(File fail, String formaat, String salvestusAsukoht) {
         try {

@@ -1,27 +1,24 @@
 package org.riko.ui;
 
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
-import org.riko.ui.buttons.OptionsButton;
-import org.riko.ui.frames.SelectFormatUI;
+import org.riko.ui.buttons.SattedNupp;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
-public class MainUI {
+public class PeaUI {
     private static JFrame raam;
 
     public static void primaryGui() {
         FlatMacDarkLaf.setup();
 
-        URL tausttapilt = Thread.currentThread().getContextClassLoader().getResource("draggg.png");
-
+        URL taustapilt = Thread.currentThread().getContextClassLoader().getResource("draggg.png");
         try {
-            DropPanel.pilt = ImageIO.read(tausttapilt);
+            LohistusPaneel.pilt = ImageIO.read(taustapilt);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -39,7 +36,7 @@ public class MainUI {
         tooriistaPaneel.setLayout(new BoxLayout(tooriistaPaneel, BoxLayout.X_AXIS));
         tooriistaPaneel.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        JButton suvandiNupp = new OptionsButton("Suvandid");
+        JButton suvandiNupp = new SattedNupp("Suvandid");
         suvandiNupp.setHorizontalAlignment(SwingConstants.LEFT);
 
         suvandiNupp.setIcon(new ImageIcon(Thread.currentThread().getContextClassLoader().getResource("optionsgear.png").getFile()));
@@ -51,7 +48,7 @@ public class MainUI {
 
 
         // peapaneel, kuhu saab kukutada pilte
-        JPanel lohistusPaneel = new DropPanel() {
+        JPanel lohistusPaneel = new LohistusPaneel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
