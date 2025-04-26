@@ -12,6 +12,8 @@ public class SelectFormatUI {
 
     public static String format;
 
+
+    //See meetod tagastab valitud formaadi, et teises meetodis muuta fail soovitud formaati.
     public static String formaat() {
         FlatMacDarkLaf.setup();
 

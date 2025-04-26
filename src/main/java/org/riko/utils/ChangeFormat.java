@@ -21,12 +21,12 @@ public class ChangeFormat {
 
             try{
                 File uusFail = new File(salvestusAsukoht,
-                        fail.getName().replaceFirst("[.][^.]+$", "") + "." + formaat.toLowerCase());
+                        fail.getName().replaceFirst("[.][^.]+$", "") + "." + formaat.toLowerCase()); // loob uue faili asendades vana formaadi
 
-                boolean tulemus = ImageIO.write(pilt, formaat, uusFail);
-                System.out.println("Töötas: " + tulemus);
+                boolean tulemus = ImageIO.write(pilt, formaat, uusFail); // salvestab pildi uues formaadis
+                System.out.println("Töötas: " + tulemus); // näitab, kas salvestamine õnnestus
             } catch (IOException e){
-                System.out.println("Viga: " + e);
+                System.out.println("Viga: " + e); // näitab, mis viga tekkis
                 e.printStackTrace();
             }
         } catch (IOException e) {

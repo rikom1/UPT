@@ -16,6 +16,7 @@ public class OptionsButton extends JButton {
     public static JLabel salvestiAsukoht = new JLabel("Salvestatud failid asuvad: ");
     public static File kaust;
 
+    // See funktsioon loob uue akna, mis avaneb nuppu vajutades
     public static void optionsFrame() {
         optionsFrame.setSize(300, 200);
         optionsFrame.addWindowListener(new WindowAdapter() {

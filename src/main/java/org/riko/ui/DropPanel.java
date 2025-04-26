@@ -50,19 +50,19 @@ public class DropPanel extends JPanel implements DropTargetListener {
     @Override
     public void drop(DropTargetDropEvent dtde) {
         try {
-            dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE);
-            Transferable tr = dtde.getTransferable();
+            dtde.acceptDrop(DnDConstants.ACTION_COPY_OR_MOVE); // Aktsepteerib lohistamise toimingu
+            Transferable tr = dtde.getTransferable(); // Hangib lohistatud andmed
             this.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED, new Color(30, 60, 10, 0).brighter(), new Color(114, 21, 13, 0).darker()));
 
-            if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-                List<File> fileList = (List<File>) tr.getTransferData(DataFlavor.javaFileListFlavor);
+            if (tr.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) { // kontrollib, kas lohistatud andmed on failid
+                List<File> fileList = (List<File>) tr.getTransferData(DataFlavor.javaFileListFlavor); // saab lohistatud failid
 
                 if (!fileList.isEmpty()) {
                     System.out.println("File dropped: " + fileList.get(0).getAbsolutePath());
-                    file = fileList.get(0);
+                    file = fileList.get(0); // Hangib esimese lohistatud faili
 
                     SelectFormatUI.format = null;
-                    SelectFormatUI.valitudFormaat();
+                    SelectFormatUI.valitudFormaat(); // avab formaadi valimise akna
 
                     if (SelectFormatUI.format != null) {
                         if (SelectFormatUI.format.equals("JPG")) {
@@ -78,18 +78,18 @@ public class DropPanel extends JPanel implements DropTargetListener {
                         System.out.println("Format not selected or is null");
                     }
 
-                    dtde.dropComplete(true);
+                    dtde.dropComplete(true); // märgib, et lohistamine on lõpetatud
                 }
             } else {
-                System.out.println("Unsupported data flavor");
+                System.out.println("Unsupported data flavor"); // kui lohistatud andmed ei ole failid
             }
 
-            dtde.dropComplete(true);
+            dtde.dropComplete(true); // märgib, et lohistamine on lõpetatud
         } catch (UnsupportedFlavorException | IOException e) {
             e.printStackTrace();
-            dtde.dropComplete(false);
+            dtde.dropComplete(false); // märgib, et lohistamine ei õnnestunud
         }
 
-        this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null));
+        this.setDropTarget(new DropTarget(this, DnDConstants.ACTION_COPY_OR_MOVE, this, true, null)); // aktiveerib uuesti lohistamise
     }
 }

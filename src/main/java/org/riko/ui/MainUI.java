@@ -15,7 +15,7 @@ import java.net.URL;
 public class MainUI {
     private static JFrame raam;
 
-    public static void primaryGui() throws IOException {
+    public static void primaryGui() {
         FlatMacDarkLaf.setup();
 
         URL tausttapilt = Thread.currentThread().getContextClassLoader().getResource("draggg.png");
@@ -49,6 +49,8 @@ public class MainUI {
         mainPanel.setBorder(new EmptyBorder(50, 0,0 ,0 ));
         raam.add(mainPanel, BorderLayout.CENTER);
 
+
+        // peapaneel, kuhu saab kukutada pilte
         JPanel lohistusPaneel = new DropPanel() {
             @Override
             protected void paintComponent(Graphics g) {

@@ -10,3 +10,5 @@ Programmi on võimalik kompileerida nii:
 6. Oota kuni kompileerimine lõpeb, seejärel tekib valminud JAR fail kausta UPT-master\buildl\libs\
 7. Ava käsujada ja jooksuta fail käsuga: java -jar build\libs\UPT-1.0-SNAPSHOT-all.jar
 8. Oota kuni programm avaneb, seejärel saad seda kasutada.
+
+Kasutamiseks vali sättetest salvestuskaust, seejärel lohista pilt programmi aknasse ja vali soovitud formaat. Uue formaadiga fail salvestub seadistustes määratud kausta.
